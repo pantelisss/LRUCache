@@ -1,0 +1,16 @@
+PODS:
+  - LRUCache (0.1.0)
+
+DEPENDENCIES:
+  - LRUCache (from `../`)
+
+EXTERNAL SOURCES:
+  LRUCache:
+    :path: ../
+
+SPEC CHECKSUMS:
+  LRUCache: bbeb5d5d1cfc4498cf53f0e440abca7fb271d5ac
+
+PODFILE CHECKSUM: 1e00f716602f4838b1728abb0a57f4604affb441
+
+COCOAPODS: 1.4.0

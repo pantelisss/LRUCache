@@ -30,9 +30,9 @@
 /* Begin PBXFileReference section */
 		2770BBF358DE916E607BAE45 /* Pods_LRUCache_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LRUCache_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35350F2AE7F3513B7FD5B7AF /* Pods-LRUCache_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LRUCache_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LRUCache_Example/Pods-LRUCache_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		4CBDD50F555C215D421179E2 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		4CBDD50F555C215D421179E2 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		51668A23CF09D5B5BB108917 /* Pods-LRUCache_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LRUCache_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-LRUCache_Example/Pods-LRUCache_Example.release.xcconfig"; sourceTree = "<group>"; };
-		60339D6B086A697CCE78682A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		60339D6B086A697CCE78682A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* LRUCache_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LRUCache_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,7 +43,7 @@
 		607FACE51AFB9204008FA782 /* LRUCache_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LRUCache_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		6D7355461990BC086B5BF586 /* LRUCache.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = LRUCache.podspec; path = ../LRUCache.podspec; sourceTree = "<group>"; };
+		6D7355461990BC086B5BF586 /* LRUCache.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LRUCache.podspec; path = ../LRUCache.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		6F0B86146BB77D58914519C0 /* Pods_LRUCache_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LRUCache_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A63BF8CECC03F787FBDA787 /* Pods-LRUCache_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LRUCache_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LRUCache_Tests/Pods-LRUCache_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		AE035E7D6CC95EC541D5DCBB /* Pods-LRUCache_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LRUCache_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LRUCache_Tests/Pods-LRUCache_Tests.release.xcconfig"; sourceTree = "<group>"; };
