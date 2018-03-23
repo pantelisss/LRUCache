@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'LRUCache_Example' do
+  pod 'LRUCache', :path => '../'
+
+  target 'LRUCache_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
