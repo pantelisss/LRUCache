@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'LRUCache'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of LRUCache.'
+  s.summary          = 'LRU Cache implentation in swift'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = 'LRU Cache implentation in swift'
+  s.description      = 'LRU Cache implentation in swift, Feel free to report any bugs'
 
   s.homepage         = 'https://github.com/pantelisss/LRUCache'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
