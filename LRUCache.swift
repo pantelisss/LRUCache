@@ -40,9 +40,70 @@ class LRUCache: NSObject {
         return cacheObject.object
     }
     
+    // MARK: Linked list functionality
+    
+    private var head: CacheObject?
+    private var tail: CacheObject?
+    
+    private func listAddObject(obj: CacheObject) {
+        if head == nil, tail == nil {    // List is empty
+            head = obj
+            tail = obj
+            return
+        }
+        
+        // Insert the object at the end of list
+        tail!.next = obj;
+        obj.previous = tail;
+        tail = obj;
+    }
+    
+    private func listRemoveObject(obj: CacheObject) {
+        if obj == tail { // Object is at the end of list
+            tail = obj.previous
+        }
+        
+        if obj == head {  // Object is at the beggining
+            head = obj.next
+        }
+        
+        
+        obj.previous?.next = obj.next
+        obj.next?.previous = obj.previous
+        
+        obj.next = nil
+        obj.previous = nil
+    }
+    
+    private func listRemoveOlderObject() -> CacheObject? {
+        let removedObject: CacheObject? = head;
+        head = head?.next;
+        
+        // Handle the case of empty list
+        if head == nil {
+            tail = nil
+        }
+        
+        return removedObject
+    }
+    
+    private func listSendObjectToTail(obj: CacheObject) {
+        if obj == tail {  // Is already at the end
+            return;
+        }
+        
+        listRemoveObject(obj: obj)
+        listAddObject(obj: obj)
+    }
+    
+    private func clearList() {
+        head = nil
+        tail = nil
+    }
+ 
     // MARK: Notifications
     @objc private func didReceiveMemoryWarning(notification: Notification) {
         
     }
-    
+
 }
