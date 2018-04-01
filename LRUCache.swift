@@ -60,7 +60,19 @@ class LRUCache: NSObject {
             
             purgeCacheIfNeeded()
         }
+    }
     
+    func removeObjectFor(key: String) {
+        synchronized(lockObject: self) {
+            guard let cacheObject = cache[key] else { return }
+            listRemoveObject(obj: cacheObject)
+            cache.removeValue(forKey: key)
+        }
+    }
+    
+    func removeAllObjects() {
+        cache.removeAll()
+        clearList()
     }
     
     // MARK: Linked list functionality
