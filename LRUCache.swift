@@ -16,7 +16,7 @@ fileprivate class CacheObject: NSObject {
 
 class LRUCache: NSObject {
     private let capacity: Int
-    private let cache: [String : CacheObject] = [:]
+    private var cache: [String : CacheObject] = [:]
     
     required init(capacity: Int) {
         assert(capacity>1)
@@ -37,7 +37,30 @@ class LRUCache: NSObject {
     func objectFor(key: String) -> AnyObject? {
         guard let cacheObject = self.cache[key] else {return nil}
         
+        listSendObjectToTail(obj: cacheObject)
+        
         return cacheObject.object
+    }
+    
+    func setObject(object: AnyObject, forKey key: String) {
+        synchronized(lockObject: self) {
+            if let cacheObject = cache[key] {
+                cacheObject.object = object
+                
+                return
+            }
+            
+            let cacheObject = CacheObject()
+            cacheObject.object = object
+            cacheObject.key = key
+            
+            cache[key] = cacheObject
+            
+            listAddObject(obj: cacheObject)
+            
+            purgeCacheIfNeeded()
+        }
+    
     }
     
     // MARK: Linked list functionality
@@ -101,6 +124,21 @@ class LRUCache: NSObject {
         tail = nil
     }
  
+    // MARK: Helpers
+    
+    private func purgeCacheIfNeeded() {
+        let shouldRemoveObject = capacity < cache.count
+        
+        if shouldRemoveObject {
+            guard let removedObject = listRemoveOlderObject() else {return}
+            
+            if let key = removedObject.key {
+                cache.removeValue(forKey: key)
+            }
+        }
+        
+    }
+    
     // MARK: Notifications
     @objc private func didReceiveMemoryWarning(notification: Notification) {
         
