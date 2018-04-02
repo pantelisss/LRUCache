@@ -153,7 +153,7 @@ class LRUCache: NSObject {
     
     // MARK: Notifications
     @objc private func didReceiveMemoryWarning(notification: Notification) {
-        
+        removeAllObjects()
     }
 
 }
