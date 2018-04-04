@@ -112,6 +112,14 @@ class LRUCache: NSObject {
         clearList()
     }
     
+    
+    /// Get whole cache
+    ///
+    /// - Returns: Cached objects in array
+    func chacheObjects() -> [AnyObject] {
+        return listObjects().compactMap{$0.object}
+    }
+    
     // MARK: Linked list functionality
     
     /*
@@ -201,6 +209,22 @@ class LRUCache: NSObject {
             obj = obj?.next
         }
         print("========================")
+    }
+    
+    
+    /// Get the whole linked list in array
+    ///
+    /// - Returns: An array of CacheObject objects
+    private func listObjects() -> [CacheObject] {
+        var objects: [CacheObject] = []
+        
+        var obj: CacheObject? = head
+        while obj != nil {
+            objects.append(obj!)
+            obj = obj?.next
+        }
+
+        return objects
     }
     
     // MARK: Helpers
