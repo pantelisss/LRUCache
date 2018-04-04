@@ -215,10 +215,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = YP4X3JV5Z5;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = YP4X3JV5Z5;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -517,6 +519,7 @@
 			baseConfigurationReference = 35350F2AE7F3513B7FD5B7AF /* Pods-LRUCache_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = YP4X3JV5Z5;
 				INFOPLIST_FILE = LRUCache/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -532,6 +535,7 @@
 			baseConfigurationReference = 51668A23CF09D5B5BB108917 /* Pods-LRUCache_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = YP4X3JV5Z5;
 				INFOPLIST_FILE = LRUCache/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -546,6 +550,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9A63BF8CECC03F787FBDA787 /* Pods-LRUCache_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = YP4X3JV5Z5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -567,6 +572,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AE035E7D6CC95EC541D5DCBB /* Pods-LRUCache_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = YP4X3JV5Z5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
