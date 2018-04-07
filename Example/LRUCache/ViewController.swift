@@ -18,7 +18,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // MARK: Vars
     
-    var cache: LRUCache?
+    lazy var cache: LRUCache = LRUCache(capacity: 10)
+    lazy var dataSource: [String] = []
     
     // MARK: Lifecycle
     
@@ -35,33 +36,41 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: Logic
+    
+    func refresh() {
+        dataSource = cache.chacheObjects().compactMap{$0 as? String}
+        tableView.reloadData()
+    }
+    
     // MARK: Actions
     
     @IBAction func plusButtonTapped(_ sender: Any) {
-        
+        showNewItemAlert()
     }
     
     // MARK: Helpers
     
-    func newItem(withText text: String) -> [String:String] {
+    func newItem(withText text: String) -> (String,String) {
         let uuid = UUID()
         
-        return [uuid.uuidString : text]
+        return (uuid.uuidString , text)
     }
     
     func showNewItemAlert() {
         let alertController = UIAlertController(title: "New Item", message: "Insert new item", preferredStyle: .alert)
         alertController.addTextField(configurationHandler: {(_ textField: UITextField) -> Void in
             textField.placeholder = "Item Text"
-            textField.isSecureTextEntry = true
         })
         let confirmAction = UIAlertAction(title: "OK", style: .default, handler: {[weak self] (_ action: UIAlertAction) -> Void in
-            guard let text = alertController.textFields?.first?.text else {return}
+            guard let text = alertController.textFields?.first?.text else { return }
             
-            let newItem = self?.newItem(withText: text)
+            guard let newItem = self?.newItem(withText: text) else { return }
             
-            
+            self?.cache.setObject(object: newItem.1 as AnyObject, forKey: newItem.0)
+            self?.refresh()
         })
+        
         alertController.addAction(confirmAction)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
             
@@ -79,13 +88,13 @@ extension ViewController {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return dataSource.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) 
         
-        cell.textLabel?.text = "pantelis"
+        cell.textLabel?.text = dataSource[indexPath.row]
         
         return cell
     }
