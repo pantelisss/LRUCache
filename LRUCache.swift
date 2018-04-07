@@ -16,11 +16,11 @@ fileprivate class CacheObject: NSObject {
     weak var previous: CacheObject?
 }
 
-class LRUCache: NSObject {
+public class LRUCache: NSObject {
     private let capacity: Int
     private var cache: [String : CacheObject] = [:]
     
-    required init(capacity: Int) {
+    required public init(capacity: Int) {
         assert(capacity>1)
         
         self.capacity = capacity
@@ -40,7 +40,7 @@ class LRUCache: NSObject {
     ///
     /// - Parameter key: The requested key
     /// - Returns: The **user's** cached object
-    func objectFor(key: String) -> AnyObject? {
+    public func objectFor(key: String) -> AnyObject? {
 #if ENABLE_LOGS
         print("LRUCache: will access key: ", key)
 #endif
@@ -61,7 +61,7 @@ class LRUCache: NSObject {
     /// - Parameters:
     ///   - object: The object to be cached
     ///   - key: The key
-    func setObject(object: AnyObject, forKey key: String) {
+    public func setObject(object: AnyObject, forKey key: String) {
 #if ENABLE_LOGS
         defer {
             printList()
@@ -91,7 +91,7 @@ class LRUCache: NSObject {
     /// Will remove the object cached with the passed key
     ///
     /// - Parameter key: The key
-    func removeObjectFor(key: String) {
+    public func removeObjectFor(key: String) {
 #if ENABLE_LOGS
         defer {
             printList()
@@ -107,7 +107,7 @@ class LRUCache: NSObject {
     }
     
     /// Will clear the cache
-    func removeAllObjects() {
+    public func removeAllObjects() {
         cache.removeAll()
         clearList()
     }
@@ -116,7 +116,7 @@ class LRUCache: NSObject {
     /// Get whole cache
     ///
     /// - Returns: Cached objects in array
-    func chacheObjects() -> [AnyObject] {
+    public func chacheObjects() -> [AnyObject] {
         return listObjects().compactMap{$0.object}
     }
     
