@@ -115,9 +115,13 @@ public class LRUCache: NSObject {
     
     /// Get whole cache
     ///
-    /// - Returns: Cached objects in array
-    public func chacheObjects() -> [AnyObject] {
-        return listObjects().compactMap{$0.object}
+    /// - Returns: An array of tupples with format (key, user's object)
+    public func chacheObjects() -> [(String ,AnyObject)] {
+        return listObjects().compactMap({ (cacheObject) -> (String, AnyObject)? in
+            guard let key = cacheObject.key, let obj = cacheObject.object else {return nil}
+            
+            return (key, obj)
+        })
     }
     
     // MARK: Linked list functionality
