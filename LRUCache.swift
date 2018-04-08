@@ -7,7 +7,7 @@
 
 import Foundation
 
-fileprivate let ENABLE_LOGS: Bool = false
+fileprivate let ENABLE_LOGS: Bool = true
 
 fileprivate class CacheObject: NSObject {
     var object: AnyObject?
@@ -41,17 +41,17 @@ public class LRUCache: NSObject {
     /// - Parameter key: The requested key
     /// - Returns: The **user's** cached object
     public func objectFor(key: String) -> AnyObject? {
-#if ENABLE_LOGS
-        print("LRUCache: will access key: ", key)
-#endif
+        if ENABLE_LOGS {
+            print("LRUCache: will access key: ", key)
+        }
 
         guard let cacheObject = self.cache[key] else {return nil}
         
         listSendObjectToTail(obj: cacheObject)
         
-#if ENABLE_LOGS
-        printList()
-#endif
+        if ENABLE_LOGS {
+            printList()
+        }
 
         return cacheObject.object
     }
@@ -62,12 +62,12 @@ public class LRUCache: NSObject {
     ///   - object: The object to be cached
     ///   - key: The key
     public func setObject(object: AnyObject, forKey key: String) {
-#if ENABLE_LOGS
-        defer {
-            printList()
+        if ENABLE_LOGS {
+            defer {
+                printList()
+            }
+            print("LRUCache: will set key: ", key);
         }
-        print("LRUCache: will set key: ", key);
-#endif
         
         synchronized(lockObject: self) {
             if let cacheObject = cache[key] {
@@ -92,12 +92,12 @@ public class LRUCache: NSObject {
     ///
     /// - Parameter key: The key
     public func removeObjectFor(key: String) {
-#if ENABLE_LOGS
-        defer {
-            printList()
+        if ENABLE_LOGS {
+            defer {
+                printList()
+            }
+            print("LRUCache: will remove key: ", key);
         }
-        print("LRUCache: will remove key: ", key);
-#endif
 
         synchronized(lockObject: self) {
             guard let cacheObject = cache[key] else { return }
@@ -238,12 +238,12 @@ public class LRUCache: NSObject {
         let shouldRemoveObject = capacity < cache.count
         
         if shouldRemoveObject {
-#if ENABLE_LOGS
-            defer {
-                printList()
+            if ENABLE_LOGS {
+                defer {
+                    printList()
+                }
+                print("LRUCache: will purge")
             }
-            print("LRUCache: will purge")
-#endif
 
             guard let removedObject = listRemoveOlderObject() else {return}
             
@@ -257,9 +257,9 @@ public class LRUCache: NSObject {
     // MARK: Notifications
     
     @objc private func didReceiveMemoryWarning(notification: Notification) {
-#if ENABLE_LOGS
-        print("LRUCache: Received Memory warning")
-#endif
+        if ENABLE_LOGS {
+            print("LRUCache: Received Memory warning")
+        }
 
         removeAllObjects()
     }
