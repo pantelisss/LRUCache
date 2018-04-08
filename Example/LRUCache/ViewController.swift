@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // MARK: Vars
     
     lazy var cache: LRUCache = LRUCache(capacity: 10)
-    lazy var dataSource: [String] = []
+    lazy var dataSource: [(String, String)] = []
     
     // MARK: Lifecycle
     
@@ -39,7 +39,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // MARK: Logic
     
     func refresh() {
-        dataSource = cache.chacheObjects().compactMap{$0 as? String}
+        dataSource = cache.chacheObjects().compactMap{$0 as? (String, String)}
         tableView.reloadData()
     }
     
@@ -94,9 +94,17 @@ extension ViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) 
         
-        cell.textLabel?.text = dataSource[indexPath.row]
+        cell.textLabel?.text = dataSource[indexPath.row].1
         
         return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            cache.removeObjectFor(key: dataSource[indexPath.row].0)
+            refresh()
+        }
     }
     
 }
