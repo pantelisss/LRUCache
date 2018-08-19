@@ -14,6 +14,12 @@ fileprivate class CacheObject: NSObject {
     var key: String?
     weak var next: CacheObject?
     weak var previous: CacheObject?
+    
+    deinit {
+        if ENABLE_LOGS {
+            print("Deinit key: ", String(describing: key))
+        }
+    }
 }
 
 public class LRUCache: NSObject {
@@ -49,9 +55,7 @@ public class LRUCache: NSObject {
         
         listSendObjectToTail(obj: cacheObject)
         
-        if ENABLE_LOGS {
-            printList()
-        }
+        printList()
 
         return cacheObject.object
     }
@@ -62,12 +66,10 @@ public class LRUCache: NSObject {
     ///   - object: The object to be cached
     ///   - key: The key
     public func setObject(object: AnyObject, forKey key: String) {
-        if ENABLE_LOGS {
-            defer {
-                printList()
-            }
-            print("LRUCache: will set key: ", key);
+        defer {
+            printList()
         }
+        print("LRUCache: will set key: ", key);
         
         synchronized(lockObject: self) {
             if let cacheObject = cache[key] {
@@ -92,12 +94,10 @@ public class LRUCache: NSObject {
     ///
     /// - Parameter key: The key
     public func removeObjectFor(key: String) {
-        if ENABLE_LOGS {
-            defer {
-                printList()
-            }
-            print("LRUCache: will remove key: ", key);
+        defer {
+            printList()
         }
+        print("LRUCache: will remove key: ", key);
 
         synchronized(lockObject: self) {
             guard let cacheObject = cache[key] else { return }
@@ -204,12 +204,16 @@ public class LRUCache: NSObject {
  
     /// Helper method to print the entire list
     private func printList() {
+        if !ENABLE_LOGS {
+            return
+        }
+        
         var obj: CacheObject? = head
         
         print("========================")
 
         while obj != nil {
-            print(obj?.key)
+            print(String(describing: obj?.key))
             obj = obj?.next
         }
         print("========================")
@@ -238,12 +242,10 @@ public class LRUCache: NSObject {
         let shouldRemoveObject = capacity < cache.count
         
         if shouldRemoveObject {
-            if ENABLE_LOGS {
-                defer {
-                    printList()
-                }
-                print("LRUCache: will purge")
+            defer {
+                printList()
             }
+            print("LRUCache: will purge")
 
             guard let removedObject = listRemoveOlderObject() else {return}
             
